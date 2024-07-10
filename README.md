@@ -12,6 +12,10 @@ curl -sSf https://raw.githubusercontent.com/Mantissa-23/dotfiles-v2/main/.config
 
 Simple. Has all the bells and whistles except for LSP/Debugger/Linter/Formatter features. No reliance on external language/package providers like Node, Python, Perl, Ruby, Cargo or Perl. The intention is that this can still be installed onto a server and it will just bootstrap itself and work without manual installation of external dependencies.
 
+DOES have two common external dependencies, but will still function without them:
+- ripgrep
+- cmake
+
 ## VSCodium
 
 Makes up for the relatively basic nvim/init.lua. Used for actual real-boy development work.
