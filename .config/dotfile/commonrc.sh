@@ -6,7 +6,7 @@ fi
 export PATH
 
 # Dotfile config alias
-alias dotfile='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dotfile='/usr/bin/git --git-dir=$HOME/.git-dotfile/ --work-tree=$HOME'
 
 # Disable askpass
 [ -n "$SSH_CONNECTION" ] && unset SSH_ASKPASS
