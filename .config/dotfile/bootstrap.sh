@@ -25,7 +25,7 @@ echo
 GIT_DIRNAME=.git-dotfile
 alias dotfile='/usr/bin/git --git-dir=$HOME/'"$GIT_DIRNAME"'/ --work-tree=$HOME'
 echo $GIT_DIRNAME >> $HOME/.gitignore
-git clone --bare <repo_url> $HOME/$GIT_DIRNAME
+git clone --bare git@github.com:Mantissa-23/dotfiles-v2.git $HOME/$GIT_DIRNAME
 
 # Back up conflicting files to .bak
 dotfile checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} {}.bak

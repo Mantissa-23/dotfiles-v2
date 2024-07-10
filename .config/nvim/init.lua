@@ -130,6 +130,10 @@ require("lazy").setup({
         { "<leader>fs", "<cmd>lua require('telescope.builtin').live_grep()<CR>", desc = "Search (ripgrep) everything" },
       },
     },
+    {
+      'nvim-telescope/telescope-fzf-native.nvim',
+      cond = not vim.g.vscode,
+      build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' },
     { -- Which Key
       "folke/which-key.nvim",
       cond = not vim.g.vscode,
@@ -148,6 +152,7 @@ require("lazy").setup({
     },
     { -- Automatic enclosures
       'windwp/nvim-autopairs',
+      cond = not vim.g.vscode,
       event = "InsertEnter",
       config = true
       -- use opts = {} for passing setup options
