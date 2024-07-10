@@ -24,4 +24,4 @@ export NVM_DIR="$HOME/.nvm"
 eval "$(starship init $(basename $SHELL))"
 
 # Vim alias
-alias vim='lvim'
+alias vim='nvim'

@@ -22,6 +22,13 @@ else
   -- Line numbers please
   vim.wo.number = true
 
+  -- Set wrap and linebreak. Yeah I know this is a weird preference, but it's what I like.
+  vim.wo.wrap = true
+  vim.wo.linebreak = true
+
+  -- Terminal gui colors
+  vim.o.termguicolors = true
+
   -- two semicolons to escape
   vim.keymap.set('i', '<;;>', '<Esc', { desc = 'Composite escape with ;;' })
 
@@ -30,6 +37,10 @@ else
   vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Move focus to the right window' })
   vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Move focus to the lower window' })
   vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Move focus to the upper window' })
+
+  -- Natural soft wrap navigation
+  vim.keymap.set({'n', 'v'}, 'j', 'gj')
+  vim.keymap.set({'n', 'v'}, 'k', 'gk')
 end
 
 -- Both!
@@ -41,6 +52,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- Disable [Enter to continue] messages
+vim.o.cmdheight = 0
+--vim.o.shm = 'a'
 
 -- Do not exit visual mode when indenting
 vim.keymap.set('v', '<', '<gv', { noremap = true})
@@ -69,6 +82,7 @@ require("lazy").setup({
         configs.setup({
           ensure_installed = { "lua", "vim", "vimdoc", "markdown" },
           auto_install = true,
+          indent = { enable = true },
         })
       end,
     },
@@ -112,8 +126,8 @@ require("lazy").setup({
       branch = '0.1.x',
       dependencies = { 'nvim-lua/plenary.nvim' },
       keys = {
-        { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
-        { "<leader>fs", "<cmd>Telescope find_files<cr>", desc = "Search (ripgrep) everything" },
+        { "<leader>ff", "<cmd>lua require('telescope.builtin').find_files({hidden=true})<CR>", desc = "Find files" },
+        { "<leader>fs", "<cmd>lua require('telescope.builtin').live_grep()<CR>", desc = "Search (ripgrep) everything" },
       },
     },
     { -- Which Key
@@ -122,7 +136,7 @@ require("lazy").setup({
       event = "VeryLazy",
       init = function()
         vim.o.timeout = true
-        vim.o.timeoutlen = 100
+        vim.o.timeoutlen = 200
 
         -- Just name categories here; assign keys elsewhere
         require("which-key").register({
@@ -131,6 +145,13 @@ require("lazy").setup({
       end,
       opts = {
       }
+    },
+    { -- Automatic enclosures
+      'windwp/nvim-autopairs',
+      event = "InsertEnter",
+      config = true
+      -- use opts = {} for passing setup options
+      -- this is equalent to setup({}) function
     },
     -- "All" plugins- QoL and editor shortcut stuff
     { -- cs, vs, ds, ys all 
@@ -153,5 +174,5 @@ require("lazy").setup({
   --   }
   -- },
   -- automatically check for plugin updates
-  checker = { enabled = true },
+  checker = { enabled = true, notify = false },
 })
