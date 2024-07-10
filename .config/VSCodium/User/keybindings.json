@@ -1,0 +1,47 @@
+// Place your key bindings in this file to override the defaults
+[
+	{
+    "command": "vscode-neovim.send",
+    "key": "ctrl+h",
+    "when": "editorTextFocus && neovim.mode != insert",
+    "args": "<C-w>h",
+	},
+	{
+    "command": "vscode-neovim.send",
+    "key": "ctrl+j",
+    "when": "editorTextFocus && neovim.mode != insert",
+    "args": "<C-w>j",
+	},
+	{
+    "command": "vscode-neovim.send",
+    "key": "ctrl+k",
+    "when": "editorTextFocus && neovim.mode != insert",
+    "args": "<C-w>k",
+	},
+	{
+    "command": "vscode-neovim.send",
+    "key": "ctrl+l",
+    "when": "editorTextFocus && neovim.mode != insert",
+    "args": "<C-w>l",
+	},
+	{
+		"key": "alt+j",
+		"command": "selectNextSuggestion",
+		"when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
+	},
+	{
+		"key": "alt+k",
+		"command": "-editor.action.accessibilityHelpConfigureKeybindings",
+		"when": "accessibilityHelpIsShown"
+	},
+	{
+		"key": "alt+k",
+		"command": "-keybindings.editor.recordSearchKeys",
+		"when": "inKeybindings && inKeybindingsSearch"
+	},
+	{
+		"key": "alt+k",
+		"command": "selectPrevSuggestion",
+		"when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
+	},
+]

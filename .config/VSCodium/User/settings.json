@@ -1,0 +1,24 @@
+{
+	"workbench.colorTheme": "Gruvbox Dark Hard",
+	"extensions.experimental.affinity": {
+			"asvetliakov.vscode-neovim": 1,
+			"muhammad-sammy.csharp": 1,
+	},
+	"editor.insertSpaces": false,
+	"editor.detectIndentation": false,
+	"editor.fontSize": 11,
+	"editor.fontFamily": "'JetBrainsMono Nerd Font', 'Droid Sans Mono', 'monospace', monospace",
+	"editor.tabSize": 2,
+	"vscode-neovim.compositeKeys": {
+		";;": {
+			"command": "vscode-neovim.escape"
+		}
+	},
+	"editor.acceptSuggestionOnCommitCharacter": false,
+	"editor.acceptSuggestionOnEnter": "off",
+	"editor.tabCompletion": "on",
+	"vscode-neovim.compositeTimeout": 100,
+	"omnisharp.enableMsBuildLoadProjectsOnDemand": true,
+	"omnisharp.enableAsyncCompletion": true,
+	"window.restoreWindows": "none"
+}
