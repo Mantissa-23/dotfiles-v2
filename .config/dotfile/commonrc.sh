@@ -8,9 +8,9 @@ export PATH
 # Dotfile config alias
 alias dotfile='/usr/bin/git --git-dir=$HOME/.git-dotfile/ --work-tree=$HOME'
 
-# Disable askpass
-[ -n "$SSH_CONNECTION" ] && unset SSH_ASKPASS
-export GIT_ASKPASS=
+# Set askpass to kde wallet
+export SSH_ASKPASS=ksshaskpass
+export GIT_ASKPASS=ksshaskpass
 
 # nvm
 export NVM_DIR="$HOME/.nvm"

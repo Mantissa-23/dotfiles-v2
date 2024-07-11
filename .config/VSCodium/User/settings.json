@@ -20,5 +20,6 @@
 	"vscode-neovim.compositeTimeout": 100,
 	"omnisharp.enableMsBuildLoadProjectsOnDemand": true,
 	"omnisharp.enableAsyncCompletion": true,
-	"window.restoreWindows": "none"
+	"window.restoreWindows": "none",
+	"git.enableSmartCommit": true
 }
