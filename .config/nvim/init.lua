@@ -126,8 +126,8 @@ require("lazy").setup({
       branch = '0.1.x',
       dependencies = { 'nvim-lua/plenary.nvim' },
       keys = {
-        { "<leader>ff", "<cmd>lua require('telescope.builtin').find_files({hidden=true})<CR>", desc = "Find files" },
-        { "<leader>fs", "<cmd>lua require('telescope.builtin').live_grep()<CR>", desc = "Search (ripgrep) everything" },
+        { "<leader>ff", "<cmd>lua require('telescope.builtin').find_files({hidden=true})<cr>", desc = "Find files" },
+        { "<leader>fs", "<cmd>lua require('telescope.builtin').live_grep()<cr>", desc = "Search (ripgrep) everything" },
       },
     },
     {
@@ -144,7 +144,10 @@ require("lazy").setup({
 
         -- Just name categories here; assign keys elsewhere
         require("which-key").register({
-          f = { name = "Find" }
+          f = {
+            name = "Find",
+            c = { "<cmd>e $HOME/.config/nvim/init.lua<cr>", "Open nvim init.lua" }
+          }
         }, { prefix = "<leader>" })
       end,
       opts = {
