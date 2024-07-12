@@ -29,6 +29,9 @@ else
   -- Terminal gui colors
   vim.o.termguicolors = true
 
+  -- Rulers at 80, 120
+  vim.o.colorcolumn = "80,120"
+
   -- two semicolons to escape
   vim.keymap.set('i', '<;;>', '<Esc', { desc = 'Composite escape with ;;' })
 

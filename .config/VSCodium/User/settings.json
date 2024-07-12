@@ -1,8 +1,8 @@
 {
 	"workbench.colorTheme": "Gruvbox Dark Hard",
 	"extensions.experimental.affinity": {
-			"asvetliakov.vscode-neovim": 1,
-			"muhammad-sammy.csharp": 1,
+		"asvetliakov.vscode-neovim": 1,
+		"muhammad-sammy.csharp": 1,
 	},
 	"editor.insertSpaces": false,
 	"editor.detectIndentation": false,
@@ -21,5 +21,16 @@
 	"omnisharp.enableMsBuildLoadProjectsOnDemand": true,
 	"omnisharp.enableAsyncCompletion": true,
 	"window.restoreWindows": "none",
-	"git.enableSmartCommit": true
+	"git.enableSmartCommit": true,
+	"git.useIntegratedAskPass": false,
+	"git.confirmSync": false,
+	"git.autofetch": true,
+	"editor.rulers": [
+		80,
+		120
+	],
+	"dotnetAcquisitionExtension.enableTelemetry": false,
+	"workbench.cloudChanges.continueOn": "off",
+	"workbench.enableExperiments": false,
+	"update.mode": "none"
 }
