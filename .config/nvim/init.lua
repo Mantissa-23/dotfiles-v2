@@ -149,7 +149,11 @@ require("lazy").setup({
         require("which-key").register({
           f = {
             name = "Find",
-            c = { "<cmd>e $HOME/.config/nvim/init.lua<cr>", "Open nvim init.lua" }
+            c = { "<cmd>e $HOME/.config/nvim/init.lua<cr>", "Open nvim init.lua" },
+          },
+          i = {
+            name = "Insert",
+            t = { "<cmd>r!date -Is<cr>", "Insert current timestamp, UNIX only" },
           }
         }, { prefix = "<leader>" })
       end,
