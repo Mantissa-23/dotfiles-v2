@@ -66,6 +66,7 @@ vim.keymap.set('v', '>', '>gv', { noremap = true})
 require("lazy").setup({
   spec = {
     -- Non-vscodium plugins- I.e. the "IDE" stuff
+    -- Aesthetics
     { -- My favorite colorscheme :)
       "luisiacc/gruvbox-baby",
       cond = not vim.g.vscode,
@@ -75,7 +76,68 @@ require("lazy").setup({
         vim.cmd([[colorscheme gruvbox-baby]])
       end,
     },
-    { -- For syntax highlighting
+    {
+      "echasnovski/mini.statusline",
+      version = false,
+      cond = not vim.g.vscode,
+      lazy = false,
+      config = function()
+        require('mini.statusline').setup()
+      end,
+    },
+    -- Core IDE functionality, i.e. LSP, mason.nvim, etc.
+    {
+      "williamboman/mason.nvim",
+      cond = not vim.g.vscode,
+      lazy = false,
+      config = function()
+        require('mason').setup()
+      end,
+    },
+    {
+      "williamboman/mason-lspconfig.nvim",
+      cond = not vim.g.vscode,
+      dependencies = { "williamboman/mason.nvim" },
+      config = function()
+        require("mason-lspconfig").setup {
+          ensure_installed = { "lua_ls" },
+        }
+      end,
+    },
+    {
+      "neovim/nvim-lspconfig",
+      cond = not vim.g.vscode,
+      dependencies = { "williamboman/mason-lspconfig.nvim" },
+      config = function()
+        require("mason-lspconfig").setup_handlers {
+          function(server_name)
+            require("lspconfig")[server_name].setup {
+              autostart = true,
+            }
+          end,
+          ["lua_ls"] = function ()
+            local lspconfig = require("lspconfig")
+            lspconfig.lua_ls.setup {
+              settings = {
+                Lua = {
+                  diagnostics = {
+                    globals = { "vim" }
+                  }
+                }
+              }
+            }
+          end,
+        }
+      end,
+    },
+    -- Specific langauge support
+    {
+      "pmizio/typescript-tools.nvim",
+      dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+      opts = {},
+    },
+    -- For language structure support, particularly syntax highlighting
+    {
       "nvim-treesitter/nvim-treesitter",
       cond = not vim.g.vscode,
       build = ":TSUpdate",
@@ -107,6 +169,23 @@ require("lazy").setup({
           char = "▍"
         },
       },
+    },
+    -- git integration
+    {
+      "echasnovski/mini-git",
+      version = false,
+      cond = not vim.g.vscode,
+      config = function()
+        require('mini.git').setup()
+      end,
+    },
+    {
+      "echasnovski/mini.diff",
+      version = false,
+      cond = not vim.g.vscode,
+      config = function()
+        require('mini.diff').setup()
+      end,
     },
     { -- File explorer
       "nvim-tree/nvim-tree.lua",
@@ -141,53 +220,43 @@ require("lazy").setup({
       "folke/which-key.nvim",
       cond = not vim.g.vscode,
       event = "VeryLazy",
+      dependencies = { "echasnovski/mini.icons" },
       init = function()
         vim.o.timeout = true
         vim.o.timeoutlen = 200
 
         -- Just name categories here; assign keys elsewhere
-        require("which-key").register({
-          f = {
-            name = "Find",
-            c = { "<cmd>e $HOME/.config/nvim/init.lua<cr>", "Open nvim init.lua" },
-          },
-          i = {
-            name = "Insert",
-            t = { "<cmd>r!date -Is<cr>", "Insert current timestamp, UNIX only" },
-          }
-        }, { prefix = "<leader>" })
+        require("which-key").add({
+          { "<leader>c", group = "Config" },
+          { "<leader>ci", "<cmd>e $HOME/.config/nvim/init.lua<cr>", desc = "Open nvim init.lua" },
+          { "<leader>cl", group = "LSP" },
+          { "<leader>cli", "<cmd>LspInstall<cr>", desc = "Install LSP" },
+          { "<leader>cll", "<cmd>Mason<cr>", desc = "Open LSP manager" },
+          { "<leader>clr", "<cmd>LspRestart<cr>", desc = "Open LSP manager" },
+          { "<leader>cls", "<cmd>LspInfo<cr>", desc = "LSP Status" },
+          { "<leader>cp", "<cmd>Lazy<cr>", desc = "Open plugin manager" },
+          { "<leader>i", group = "Insert" },
+          { "<leader>it", "<cmd>r!date -Is<cr>", desc = "Insert current timestamp, UNIX only" },
+        })
       end,
       opts = {
       }
     },
     { -- Automatic enclosures
-      'windwp/nvim-autopairs',
+      'echasnovski/mini.pairs',
       cond = not vim.g.vscode,
-      event = "InsertEnter",
-      config = true
-      -- use opts = {} for passing setup options
-      -- this is equalent to setup({}) function
+      config = true,
     },
     -- "All" plugins- QoL and editor shortcut stuff
-    { -- cs, vs, ds, ys all 
-      "kylechui/nvim-surround",
-      version = "*",
+    {
+      'echasnovski/mini.surround',
+      version = false,
       event = "VeryLazy",
-      config = function()
-        require("nvim-surround").setup({
-
-        })
-      end,
     },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
-  -- install = {
-  --   colorscheme = {
-  --     "gruvbox-baby",
-  --     cond = not vim.g.vscode,
-  --   }
-  -- },
+  install = { },
   -- automatically check for plugin updates
   checker = { enabled = true, notify = false },
 })
