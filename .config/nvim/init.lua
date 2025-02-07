@@ -48,8 +48,8 @@ vim.keymap.set('v', '>', '>gv', { noremap = true})
 
 -- Open helpfiles vertically
 vim.api.nvim_create_autocmd('FileType', {
-    pattern = 'help',
-    command = 'wincmd L',
+  pattern = 'help',
+  command = 'wincmd L',
 })
 
 vim.keymap.set('n', 's', '<Nop>', { noremap = true})

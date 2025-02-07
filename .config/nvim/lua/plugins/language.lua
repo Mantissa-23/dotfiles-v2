@@ -13,7 +13,7 @@ return {
     dependencies = { "williamboman/mason.nvim" },
     config = function()
       require("mason-lspconfig").setup {
-        ensure_installed = { "lua_ls" },
+        ensure_installed = { "lua_ls", "csharp_ls" },
       }
     end,
   },
@@ -155,5 +155,28 @@ return {
         }
       }
     end,
+  },
+  {
+    'stevearc/conform.nvim',
+    dependencies = { "williamboman/mason.nvim" },
+    opts = {
+      formatters_by_ft = {
+        lua = { "stylua" },
+        python = { "isort", "black" },
+        typescript = { "prettierd", "prettier", stop_after_first = true },
+        javascript = { "prettierd", "prettier", stop_after_first = true },
+        csharp = { "csharpier" }
+      }
+    },
+    keys = {
+      { "<leader>F", function() require("conform").format() end, mode = { "n", "v" }, desc = "Format" }
+    }
+  },
+  {
+    'zapling/mason-conform.nvim',
+    dependencies = { 'stevearc/conform.nvim' },
+    opts = {
+      ignore_install = { 'prettier' },
+    },
   }
 }
