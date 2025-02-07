@@ -27,4 +27,20 @@ return {
       { "sn", "<cmd>lua require('treesj').toggle()<cr>", desc = "Toggle semantic node" },
     },
   },
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {
+      modes = {
+        search = {
+          enabled = true
+        }
+      }
+    },
+    keys = {
+      { "st", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "sT", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+    },
+    config = true,
+  }
 }

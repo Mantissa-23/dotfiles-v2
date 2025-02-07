@@ -2,9 +2,6 @@ require('config.lazy')
 
 -- Environment-dependent config
 if vim.g.vscode then
-  
-
-
 else
   -- Line numbers please
   vim.wo.number = true
@@ -52,11 +49,20 @@ vim.o.cmdheight = 0
 vim.keymap.set('v', '<', '<gv', { noremap = true})
 vim.keymap.set('v', '>', '>gv', { noremap = true})
 
+-- Open helpfiles vertically
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'help',
+    command = 'wincmd L',
+})
+
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
     -- import your plugins
     { import = "plugins" },
+  },
+  change_detection = {
+    notify = false
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
