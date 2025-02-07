@@ -4,7 +4,6 @@
 		"asvetliakov.vscode-neovim": 1,
 		"muhammad-sammy.csharp": 1,
 	},
-	"editor.insertSpaces": false,
 	"editor.detectIndentation": false,
 	"editor.fontSize": 11,
 	"editor.fontFamily": "'JetBrainsMono Nerd Font', 'Droid Sans Mono', 'monospace', monospace",
@@ -32,5 +31,9 @@
 	"dotnetAcquisitionExtension.enableTelemetry": false,
 	"workbench.cloudChanges.continueOn": "off",
 	"workbench.enableExperiments": false,
-	"update.mode": "none"
+	"update.mode": "none",
+  "dotnet.codeLens.enableReferencesCodeLens": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "explorer.confirmDragAndDrop": false,
+  "diffEditor.ignoreTrimWhitespace": false
 }

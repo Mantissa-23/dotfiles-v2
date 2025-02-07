@@ -15,7 +15,4 @@ if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
 fi
 export PATH
 
-# Starship terminal prompt
-eval "$(starship init zsh)"
-
 source $HOME/.config/dotfile/commonrc.sh

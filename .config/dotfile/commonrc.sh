@@ -25,3 +25,6 @@ eval "$(starship init $(basename $SHELL))"
 
 # Vim alias
 alias vim='nvim'
+
+# Godot Version Manager (gdvm)
+export PATH="/home/dylan/.gdvm/bin/current_godot:/home/dylan/.gdvm/bin:$PATH"
