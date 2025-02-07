@@ -13,6 +13,7 @@
   "mini.diff": { "branch": "main", "commit": "bc3a7be30fd45ed4961ea90de1d9d04637cdeae6" },
   "mini.icons": { "branch": "main", "commit": "ec61af6e606fc89ee3b1d8f2f20166a3ca917a36" },
   "mini.pairs": { "branch": "main", "commit": "1a3e73649c0eaef2f6c48ce1e761c6f0a7c11918" },
+  "mini.snippets": { "branch": "main", "commit": "077566fb7eb918f3a4136913645eb57cd622a0c4" },
   "mini.statusline": { "branch": "main", "commit": "20837fbf075dba0f09ef60987612d4ee552895e1" },
   "mini.trailspace": { "branch": "main", "commit": "9bbbf568c06fe424dc21d2c228fa76098008a5f3" },
   "nvim-cmp": { "branch": "main", "commit": "12509903a5723a876abd65953109f926f4634c30" },

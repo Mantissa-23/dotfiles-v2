@@ -69,27 +69,35 @@ return {
       { "<leader>lci", function() vim.lsp.buf.incoming_calls() end, desc = "List incoming calls" },
       { "<leader>lco", function() vim.lsp.buf.outgoing_calls() end, desc = "List outgoing calls"},
       { "<leader>la", function() vim.lsp.buf.code_action() end, desc = "Code Actions"},
-      { "<C-.>", function() vim.lsp.buf.code_action() end, desc = "Code ACtions"},
+      { "<C-.>", function() vim.lsp.buf.code_action() end, desc = "Code Actions"},
+      { "<leader>lD", function() vim.diagnostic.open_float() end, desc = "LSP Diagnostics (on cursor)" },
     },
   },
-  --[[
   { -- Autocompletion. Use Ctrl+N to select from autocomplete menu
     'echasnovski/mini.completion',
+    dependencies = "neovim/nvim-lspconfig",
     version = false,
-    config = true,
+    config = function()
+      require('mini.completion').setup()
+    end,
   },
-  ]]
   {
-    "hrsh7th/nvim-cmp",
+    "echasnovski/mini.snippets",
+    version = false,
     cond = not vim.g.vscode,
-    dependencies = {
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
-      'hrsh7th/nvim-cmp',
-    },
-    config = true,
+    config = function()
+      local gen_loader = require('mini.snippets').gen_loader
+      require('mini.snippets').setup({
+        snippets = {
+          -- Load custom file with global snippets first (adjust for Windows)
+          gen_loader.from_file('~/.config/nvim/snippets/global.json'),
+
+          -- Load snippets based on current language by reading files from
+          -- "snippets/" subdirectories from 'runtimepath' directories.
+          gen_loader.from_lang(),
+        },
+      })
+    end,
   },
   { -- Syntax-aware highlighting and many other things
     "nvim-treesitter/nvim-treesitter",
