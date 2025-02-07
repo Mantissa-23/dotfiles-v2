@@ -1,22 +1,9 @@
--- Bootstrap lazy.nvim
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
-end
-vim.opt.rtp:prepend(lazypath)
+require('config.lazy')
 
 -- Environment-dependent config
 if vim.g.vscode then
+  
+
 
 else
   -- Line numbers please
@@ -44,6 +31,9 @@ else
   -- Natural soft wrap navigation
   vim.keymap.set({'n', 'v'}, 'j', 'gj')
   vim.keymap.set({'n', 'v'}, 'k', 'gk')
+
+  -- Unbind "s" which we use for quick actions
+  vim.keymap.set("n", "s", "<Nop>")
 end
 
 -- Both!
@@ -62,201 +52,15 @@ vim.o.cmdheight = 0
 vim.keymap.set('v', '<', '<gv', { noremap = true})
 vim.keymap.set('v', '>', '>gv', { noremap = true})
 
--- Init lazyvim
+-- Setup lazy.nvim
 require("lazy").setup({
   spec = {
-    -- Non-vscodium plugins- I.e. the "IDE" stuff
-    -- Aesthetics
-    { -- My favorite colorscheme :)
-      "luisiacc/gruvbox-baby",
-      cond = not vim.g.vscode,
-      lazy = false,
-      priority = 1000,
-      config = function()
-        vim.cmd([[colorscheme gruvbox-baby]])
-      end,
-    },
-    {
-      "echasnovski/mini.statusline",
-      version = false,
-      cond = not vim.g.vscode,
-      lazy = false,
-      config = function()
-        require('mini.statusline').setup()
-      end,
-    },
-    -- Core IDE functionality, i.e. LSP, mason.nvim, etc.
-    {
-      "williamboman/mason.nvim",
-      cond = not vim.g.vscode,
-      lazy = false,
-      config = function()
-        require('mason').setup()
-      end,
-    },
-    {
-      "williamboman/mason-lspconfig.nvim",
-      cond = not vim.g.vscode,
-      dependencies = { "williamboman/mason.nvim" },
-      config = function()
-        require("mason-lspconfig").setup {
-          ensure_installed = { "lua_ls" },
-        }
-      end,
-    },
-    {
-      "neovim/nvim-lspconfig",
-      cond = not vim.g.vscode,
-      dependencies = { "williamboman/mason-lspconfig.nvim" },
-      config = function()
-        require("mason-lspconfig").setup_handlers {
-          function(server_name)
-            require("lspconfig")[server_name].setup {
-              autostart = true,
-            }
-          end,
-          ["lua_ls"] = function ()
-            local lspconfig = require("lspconfig")
-            lspconfig.lua_ls.setup {
-              settings = {
-                Lua = {
-                  diagnostics = {
-                    globals = { "vim" }
-                  }
-                }
-              }
-            }
-          end,
-        }
-      end,
-    },
-    -- Specific langauge support
-    {
-      "pmizio/typescript-tools.nvim",
-      dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-      opts = {},
-    },
-    -- For language structure support, particularly syntax highlighting
-    {
-      "nvim-treesitter/nvim-treesitter",
-      cond = not vim.g.vscode,
-      build = ":TSUpdate",
-      config = function()
-        local configs = require("nvim-treesitter.configs")
-
-        configs.setup({
-          ensure_installed = { "lua", "vim", "vimdoc", "markdown" },
-          auto_install = true,
-          indent = { enable = true },
-        })
-      end,
-    },
-    { -- If no editorconfig is present, guess the indentation of a file when we open it
-      "nmac427/guess-indent.nvim",
-      cond = not vim.g.vscode,
-      event = "BufRead",
-      config = function() require('guess-indent').setup {} end,
-    },
-    { -- Add lines to denote indent depth
-      "lukas-reineke/indent-blankline.nvim",
-      cond = not vim.g.vscode,
-      main = "ibl",
-      opts = {
-        indent = {
-          char = "▏",
-        },
-        scope = {
-          char = "▍"
-        },
-      },
-    },
-    -- git integration
-    {
-      "echasnovski/mini-git",
-      version = false,
-      cond = not vim.g.vscode,
-      config = function()
-        require('mini.git').setup()
-      end,
-    },
-    {
-      "echasnovski/mini.diff",
-      version = false,
-      cond = not vim.g.vscode,
-      config = function()
-        require('mini.diff').setup()
-      end,
-    },
-    { -- File explorer
-      "nvim-tree/nvim-tree.lua",
-      cond = not vim.g.vscode,
-      version = "*",
-      lazy = false,
-      dependencies = {
-        "nvim-tree/nvim-web-devicons",
-      },
-      keys = {
-        { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Toggle File Explorer" },
-      },
-      config = function()
-        require("nvim-tree").setup {}
-      end,
-    },
-    { -- Fuzzy finder
-      'nvim-telescope/telescope.nvim',
-      cond = not vim.g.vscode,
-      branch = '0.1.x',
-      dependencies = { 'nvim-lua/plenary.nvim' },
-      keys = {
-        { "<leader>ff", "<cmd>lua require('telescope.builtin').find_files({hidden=true})<cr>", desc = "Find files" },
-        { "<leader>fs", "<cmd>lua require('telescope.builtin').live_grep()<cr>", desc = "Search (ripgrep) everything" },
-      },
-    },
-    {
-      'nvim-telescope/telescope-fzf-native.nvim',
-      cond = not vim.g.vscode,
-      build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' },
-    { -- Which Key
-      "folke/which-key.nvim",
-      cond = not vim.g.vscode,
-      event = "VeryLazy",
-      dependencies = { "echasnovski/mini.icons" },
-      init = function()
-        vim.o.timeout = true
-        vim.o.timeoutlen = 200
-
-        -- Just name categories here; assign keys elsewhere
-        require("which-key").add({
-          { "<leader>c", group = "Config" },
-          { "<leader>ci", "<cmd>e $HOME/.config/nvim/init.lua<cr>", desc = "Open nvim init.lua" },
-          { "<leader>cl", group = "LSP" },
-          { "<leader>cli", "<cmd>LspInstall<cr>", desc = "Install LSP" },
-          { "<leader>cll", "<cmd>Mason<cr>", desc = "Open LSP manager" },
-          { "<leader>clr", "<cmd>LspRestart<cr>", desc = "Open LSP manager" },
-          { "<leader>cls", "<cmd>LspInfo<cr>", desc = "LSP Status" },
-          { "<leader>cp", "<cmd>Lazy<cr>", desc = "Open plugin manager" },
-          { "<leader>i", group = "Insert" },
-          { "<leader>it", "<cmd>r!date -Is<cr>", desc = "Insert current timestamp, UNIX only" },
-        })
-      end,
-      opts = {
-      }
-    },
-    { -- Automatic enclosures
-      'echasnovski/mini.pairs',
-      cond = not vim.g.vscode,
-      config = true,
-    },
-    -- "All" plugins- QoL and editor shortcut stuff
-    {
-      'echasnovski/mini.surround',
-      version = false,
-      event = "VeryLazy",
-    },
+    -- import your plugins
+    { import = "plugins" },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
-  install = { },
+  install = {},
   -- automatically check for plugin updates
   checker = { enabled = true, notify = false },
 })
