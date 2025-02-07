@@ -68,11 +68,27 @@ return {
       { "<leader>lh", function() vim.lsp.buf.hover() end, desc = "Hover symbol"},
       { "<leader>lci", function() vim.lsp.buf.incoming_calls() end, desc = "List incoming calls" },
       { "<leader>lco", function() vim.lsp.buf.outgoing_calls() end, desc = "List outgoing calls"},
+      { "<leader>la", function() vim.lsp.buf.code_action() end, desc = "Code Actions"},
+      { "<C-.>", function() vim.lsp.buf.code_action() end, desc = "Code ACtions"},
     },
   },
+  --[[
   { -- Autocompletion. Use Ctrl+N to select from autocomplete menu
     'echasnovski/mini.completion',
     version = false,
+    config = true,
+  },
+  ]]
+  {
+    "hrsh7th/nvim-cmp",
+    cond = not vim.g.vscode,
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'hrsh7th/nvim-cmp',
+    },
     config = true,
   },
   { -- Syntax-aware highlighting and many other things
@@ -89,4 +105,47 @@ return {
       })
     end,
   },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require('nvim-treesitter.configs').setup {
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+              ["ip"] = "@parameter.inner",
+              ["ap"] = "@parameter.outer",
+              ["af"] = "@function.outer",
+              ["if"] = "@function.inner",
+              ["ac"] = "@class.outer",
+              ["ic"] = "@class.outer",
+              ["as"] = { query = '@local.scope', query_group = "locals" },
+              ["is"] = { query = '@local.scope', query_group = "locals" },
+            },
+            selection_modes = {
+              ['@parameter.inner'] = 'v', -- charwise
+              ['@parameter.outer'] = 'v', -- charwise
+              ['@function.outer'] = 'V', -- linewise
+              ['@function.inner'] = 'V', -- linewise
+              ['@class.outer'] = '<c-v>', -- blockwise
+              ['@class.inner'] = '<c-v>', -- blockwise
+              ['@local.scope'] = 'V', -- blockwise
+            },
+            include_surrounding_whitespace = true,
+          },
+          swap = {
+            enable = true,
+            swap_next = {
+              ["<A-l>"] = '@parameter.inner',
+            },
+            swap_previous = {
+              ["<A-h>"] = '@parameter.inner',
+            },
+          }
+        }
+      }
+    end,
+  }
 }

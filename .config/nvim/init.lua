@@ -28,9 +28,6 @@ else
   -- Natural soft wrap navigation
   vim.keymap.set({'n', 'v'}, 'j', 'gj')
   vim.keymap.set({'n', 'v'}, 'k', 'gk')
-
-  -- Unbind "s" which we use for quick actions
-  vim.keymap.set("n", "s", "<Nop>")
 end
 
 -- Both!
@@ -54,6 +51,9 @@ vim.api.nvim_create_autocmd('FileType', {
     pattern = 'help',
     command = 'wincmd L',
 })
+
+vim.keymap.set('n', 's', '<Nop>', { noremap = true})
+vim.keymap.set('n', 'S', '<Nop>', { noremap = true})
 
 -- Setup lazy.nvim
 require("lazy").setup({

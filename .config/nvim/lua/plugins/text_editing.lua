@@ -5,9 +5,12 @@ return {
     config = true,
   },
   {
-    'echasnovski/mini.surround',
-    version = false,
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({})
+    end
   },
   {
     'echasnovski/mini.trailspace',
@@ -24,7 +27,7 @@ return {
       })
     end,
     keys = {
-      { "sn", "<cmd>lua require('treesj').toggle()<cr>", desc = "Toggle semantic node" },
+      { "<leader>j", "<cmd>lua require('treesj').toggle()<cr>", desc = "Toggle semantic node" },
     },
   },
   {
@@ -38,8 +41,8 @@ return {
       }
     },
     keys = {
-      { "st", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "sT", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      --{ "St", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      --{ "ST", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
     },
     config = true,
   }
