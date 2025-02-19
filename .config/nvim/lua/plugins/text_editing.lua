@@ -1,8 +1,8 @@
 return {
-  { -- Automatic enclosures
-    'echasnovski/mini.pairs',
-    cond = not vim.g.vscode,
-    config = true,
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {},
   },
   {
     "kylechui/nvim-surround",

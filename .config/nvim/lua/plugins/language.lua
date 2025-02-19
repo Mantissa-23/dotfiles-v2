@@ -20,7 +20,20 @@ return {
   { -- Sane LSP presets
     "neovim/nvim-lspconfig",
     cond = not vim.g.vscode,
-    dependencies = { "williamboman/mason-lspconfig.nvim" },
+    dependencies = {
+      "williamboman/mason-lspconfig.nvim",
+      { "ms-jpq/coq_nvim", branch = "coq" },
+      { "ms-jpq/coq.artifacts", branch = "artifacts" },
+      { 'ms-jpq/coq.thirdparty', branch = "3p" },
+    },
+    init = function()
+      vim.g.coq_settings = {
+        auto_start = true,
+        keymap = {
+          jump_to_mark = "<c-n>"
+        }
+      }
+    end,
     config = function()
       local lspconfig = require('lspconfig')
 
@@ -81,14 +94,6 @@ return {
       { "<C-.>", function() vim.lsp.buf.code_action() end, desc = "Code Actions"},
       { "<leader>lD", function() vim.diagnostic.open_float() end, desc = "LSP Diagnostics (on cursor)" },
     },
-  },
-  { -- Autocompletion. Use Ctrl+N to select from autocomplete menu
-    'echasnovski/mini.completion',
-    dependencies = "neovim/nvim-lspconfig",
-    version = false,
-    config = function()
-      require('mini.completion').setup()
-    end,
   },
   {
     "echasnovski/mini.snippets",
