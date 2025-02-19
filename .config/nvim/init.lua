@@ -4,11 +4,13 @@ require('config.lazy')
 if vim.g.vscode then
 else
   -- Line numbers please
+  vim.wo.relativenumber = true
   vim.wo.number = true
 
   -- Set wrap and linebreak. Yeah I know this is a weird preference, but it's what I like.
   vim.wo.wrap = true
   vim.wo.linebreak = true
+  vim.o.tabstop = 2
 
   -- Terminal gui colors
   vim.o.termguicolors = true
@@ -43,8 +45,8 @@ vim.o.cmdheight = 0
 --vim.o.shm = 'a'
 
 -- Do not exit visual mode when indenting
-vim.keymap.set('v', '<', '<gv', { noremap = true})
-vim.keymap.set('v', '>', '>gv', { noremap = true})
+vim.keymap.set('v', '<', '<gv', { noremap = true })
+vim.keymap.set('v', '>', '>gv', { noremap = true })
 
 -- Open helpfiles vertically
 vim.api.nvim_create_autocmd('FileType', {
@@ -52,8 +54,13 @@ vim.api.nvim_create_autocmd('FileType', {
   command = 'wincmd L',
 })
 
-vim.keymap.set('n', 's', '<Nop>', { noremap = true})
-vim.keymap.set('n', 'S', '<Nop>', { noremap = true})
+-- Debind keys we use for quick actions
+vim.keymap.set('n', 's', '<Nop>', { noremap = true })
+vim.keymap.set('n', 'S', '<Nop>', { noremap = true })
+
+-- Bind escape to exit terminal 
+
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
 
 -- Setup lazy.nvim
 require("lazy").setup({

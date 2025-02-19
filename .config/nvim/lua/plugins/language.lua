@@ -13,7 +13,7 @@ return {
     dependencies = { "williamboman/mason.nvim" },
     config = function()
       require("mason-lspconfig").setup {
-        ensure_installed = { "lua_ls", "csharp_ls" },
+        ensure_installed = { "lua_ls", "csharp_ls", "vtsls" },
       }
     end,
   },
@@ -22,26 +22,35 @@ return {
     cond = not vim.g.vscode,
     dependencies = { "williamboman/mason-lspconfig.nvim" },
     config = function()
-      require("mason-lspconfig").setup_handlers {
-        -- Configure the plugin here
-        function(server_name)
-          require("lspconfig")[server_name].setup {
-            autostart = true,
-          }
-        end,
-        -- Set configuration for LSPs here
-        ["lua_ls"] = function ()
-          local lspconfig = require("lspconfig")
-          lspconfig.lua_ls.setup {
-            settings = {
-              Lua = {
-                diagnostics = {
-                  globals = { "vim" }
-                }
-              }
+      local lspconfig = require('lspconfig')
+
+      lspconfig.csharp_ls.setup {
+        autostart = true,
+      }
+
+      lspconfig.vtsls.setup {
+        autostart = true,
+        settings = {
+          vtsls = {
+            experimental = {
+              completion = {
+                enableServerSideFuzzyMatch = true,
+                enableProjectDiagnostics = true,
+              },
+            },
+          },
+        }
+      }
+
+      lspconfig.lua_ls.setup {
+        autostart = true,
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { "vim" }
             }
           }
-        end,
+        }
       }
 
       -- Unbind default bindings
