@@ -19,6 +19,12 @@ return {
         { "<leader>it", "<cmd>r!date -Is<cr>", desc = "Insert current timestamp, UNIX only" },
         { '<leader>fc', '<cmd>let @/ = ""<cr>', desc = "Reset Search" },
         { "S", group = "Quick Actions" },
+        { "<leader>l", group = "LSP" },
+        { "<leader>cl", group = "LSP Config" },
+        { "<leader>a", group = "AI" },
+        { "<leader>g", group = "Git" },
+        { "<leader>f", group = "Find" },
+        { "<leader>fh", group = "Find hidden" },
       })
     end,
     opts = {

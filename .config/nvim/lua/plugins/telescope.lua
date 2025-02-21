@@ -9,7 +9,6 @@ return {
       { "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", desc = "Find files" },
       { "<leader>fD", "<cmd>lua require('telescope.builtin').diagnostics()<cr>", desc = "Search diagnostics" },
       { "<leader>fs", "<cmd>lua require('telescope.builtin').live_grep()<cr>", desc = "Search (ripgrep) everything" },
-      { "<leader>fh", group = "Find hidden" },
       { "<leader>fhf", "<cmd>lua require('telescope.builtin').find_files({hidden=true, ignore=false})<cr>", desc = "Find hidden files" },
       { "<leader>fhs", "<cmd>lua require('telescope.builtin').live_grep({hidden=true, ignore=false})<cr>", desc = "Hidden Full text search" },
     },

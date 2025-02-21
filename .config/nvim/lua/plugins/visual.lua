@@ -12,7 +12,7 @@ return {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function ()
-      function isRecording ()
+      local function isRecording ()
         local reg = vim.fn.reg_recording()
         if reg == "" then return "" end -- not recording
         return "⏺ " .. reg

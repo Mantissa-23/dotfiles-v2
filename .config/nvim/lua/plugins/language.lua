@@ -34,12 +34,10 @@ return {
       })
     end,
     keys = {
-      { "<leader>cl", group = "LSP Config" },
       { "<leader>cli", "<cmd>LspInstall<cr>", desc = "Install LSP" },
       { "<leader>cll", "<cmd>Mason<cr>", desc = "Open LSP manager" },
       { "<leader>clr", "<cmd>LspRestart<cr>", desc = "Open LSP manager" },
       { "<leader>cls", "<cmd>LspInfo<cr>", desc = "LSP Status" },
-      { "<leader>l", group = "LSP" },
       { "<leader>ld", function() vim.lsp.buf.definition() end, desc = "Goto definition"},
       { "<leader>lr", function() vim.lsp.buf.references() end, desc = "Goto references"},
       { "gd", function() vim.lsp.buf.definition() end, desc = "Goto definition"},

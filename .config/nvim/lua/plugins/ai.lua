@@ -34,7 +34,6 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     keys = {
-      { "<leader>a", group = "AI" },
       { "<leader>ac", "<cmd>CodeCompanionChat<cr>", desc = "AI Chat" },
       { "<leader>aa", "<cmd>CodeCompanion<cr>", desc = "AI Prompt" },
     }
