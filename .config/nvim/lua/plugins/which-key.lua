@@ -17,6 +17,7 @@ return {
         { "<leader>cp", "<cmd>Lazy<cr>", desc = "Open plugin manager" },
         { "<leader>i", group = "Insert" },
         { "<leader>it", "<cmd>r!date -Is<cr>", desc = "Insert current timestamp, UNIX only" },
+        { '<leader>fc', '<cmd>let @/ = ""<cr>', desc = "Reset Search" },
         { "S", group = "Quick Actions" },
       })
     end,
