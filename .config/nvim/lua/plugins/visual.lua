@@ -44,8 +44,7 @@ return {
             color = { bg = '#cc241d', fg = '#ebdbb2' },
           } },
           lualine_b = {'mode'},
-          lualine_c = {'branch', 'diff', 'diagnostics'},
-          lualine_d = {'filename'},
+          lualine_c = {'filename', 'diagnostics'},
           lualine_x = {'encoding', 'fileformat', 'filetype'},
           lualine_y = {'progress', 'searchcount'},
           lualine_z = {'location'}
