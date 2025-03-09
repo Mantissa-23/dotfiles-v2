@@ -181,9 +181,14 @@ return {
       local configs = require("nvim-treesitter.configs")
 
       configs.setup({
-        ensure_installed = { "lua", "vim", "vimdoc", "markdown" },
+        ensure_installed = { "lua", "vim", "vimdoc", "markdown", "svelte" },
         auto_install = true,
-        indent = { enable = true },
+        indent = {
+          enable = true,
+        },
+        highlight = {
+          enable = true,
+        },
       })
     end,
   },

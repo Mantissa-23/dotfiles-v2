@@ -30,6 +30,9 @@ else
   -- Natural soft wrap navigation
   vim.keymap.set({'n', 'v'}, 'j', 'gj')
   vim.keymap.set({'n', 'v'}, 'k', 'gk')
+
+  -- Editorconfig please!
+  vim.g.editorconfig = true
 end
 
 -- Both!

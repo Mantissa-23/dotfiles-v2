@@ -7,7 +7,7 @@ return {
       strategies = {
         chat = {
           adapter = "ollama",
-          model = "deepseek-r1:14b",
+          model = "Qwen2.5-Coder:3B",
           keymaps = {
             send = {
               modes = { n = "<C-s>", i = "<C-s>" },
@@ -19,13 +19,13 @@ return {
         },
         inline = {
           adapter = "ollama",
-          model = "deepseek-r1:14b",
+          model = "Qwen2.5-Coder:3B",
         },
       },
       adapters = {
         ollama_deepseek_r1 = {
           name = "ollama",
-          model = "deepseek-r1:14b",
+          model = "Qwen2.5-Coder:3B",
         }
       }
     },

@@ -1,12 +1,19 @@
 return {
   { -- Colorscheme
-    "luisiacc/gruvbox-baby",
+    "morhetz/gruvbox",
     cond = not vim.g.vscode,
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd([[colorscheme gruvbox-baby]])
+      vim.cmd([[colorscheme gruvbox]])
+      vim.g.gruvbox_contrast_dark = "hard"
+      vim.g.gruvbox_contrast_light = "hard"
     end,
+    keys = {
+      { "<leader>C", function()
+        vim.o.background = (vim.o.background == "dark" and "light" or "dark")
+      end, desc = "Toggle Between Dark/Light Mode"}
+    }
   },
   {
     'nvim-lualine/lualine.nvim',
