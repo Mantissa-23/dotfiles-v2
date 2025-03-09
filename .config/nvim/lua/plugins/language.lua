@@ -7,7 +7,7 @@ return {
       local configs = require("nvim-treesitter.configs")
 
       configs.setup({
-        ensure_installed = { "lua", "vim", "vimdoc", "markdown" },
+        ensure_installed = { "lua", "vim", "vimdoc", "markdown", "graphql" },
         auto_install = true,
         indent = { enable = true },
       })
