@@ -16,3 +16,5 @@ fi
 export PATH
 
 source $HOME/.config/dotfile/commonrc.sh
+
+#source ./.env.mvcr

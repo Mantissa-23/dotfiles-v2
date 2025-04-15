@@ -69,6 +69,10 @@ return {
         matching = { disallow_symbol_nonprefix_matching = false }
       })
 
+      vim.diagnostic.config {
+        update_in_insert = true
+      }
+
       -- Set up lspconfig.
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
@@ -95,11 +99,19 @@ return {
             experimental = {
               completion = {
                 enableServerSideFuzzyMatch = true,
-                enableProjectDiagnostics = true,
+                --enableProjectDiagnostics = true,
               },
             },
           },
         }
+      }
+      require('lspconfig')['svelte'].setup {
+        capabilities = capabilities,
+        autostart = true,
+      }
+      require('lspconfig')['cssls'].setup {
+        capabilities = capabilities,
+        autostart = true,
       }
     end,
   },
