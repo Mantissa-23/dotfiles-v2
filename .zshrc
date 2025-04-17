@@ -10,10 +10,6 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen apply
 
 # User specific environment
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-fi
-export PATH
 
 source $HOME/.config/dotfile/commonrc.sh
 
