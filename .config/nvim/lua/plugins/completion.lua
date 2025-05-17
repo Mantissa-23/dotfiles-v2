@@ -113,6 +113,10 @@ return {
         capabilities = capabilities,
         autostart = true,
       }
+      require('lspconfig')['rust_analyzer'].setup {
+        capabilities = capabilities,
+        autostart = true,
+      }
     end,
   },
   {
