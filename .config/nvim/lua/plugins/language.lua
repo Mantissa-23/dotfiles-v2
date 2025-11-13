@@ -7,7 +7,7 @@ return {
       local configs = require("nvim-treesitter.configs")
 
       configs.setup({
-        ensure_installed = { "lua", "vim", "vimdoc", "markdown", "svelte", "graphql" },
+        ensure_installed = { "lua", "vim", "vimdoc", "markdown", "svelte", "graphql", "gdscript", "godot_resource", "gdshader", "c", "cpp" },
         auto_install = true,
         indent = {
           enable = true,
@@ -86,7 +86,7 @@ return {
         python = { "isort", "black" },
         typescript = { "prettierd", "prettier", stop_after_first = true },
         javascript = { "prettierd", "prettier", stop_after_first = true },
-        csharp = { "csharpier" }
+        csharp = { "csharpier" },
       }
     },
     keys = {

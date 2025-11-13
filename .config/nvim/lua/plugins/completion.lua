@@ -117,6 +117,14 @@ return {
         capabilities = capabilities,
         autostart = true,
       }
+      require('lspconfig')['gdscript'].setup {
+        capabilities = capabilities,
+        autostart = true,
+      }
+      require('lspconfig')['clangd'].setup {
+        capabilities = capabilities,
+        autostart = true,
+      }
     end,
   },
   {

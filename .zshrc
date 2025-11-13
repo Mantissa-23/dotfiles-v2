@@ -14,3 +14,4 @@ antigen apply
 source $HOME/.config/dotfile/commonrc.sh
 
 #source ./.env.mvcr
+export PATH="/home/dylan/.gdvm/bin/current_godot:/home/dylan/.gdvm/bin:$PATH"

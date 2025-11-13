@@ -1,4 +1,5 @@
 require('config.lazy')
+require('config.godot-neovim')
 
 -- Environment-dependent config
 if vim.g.vscode then

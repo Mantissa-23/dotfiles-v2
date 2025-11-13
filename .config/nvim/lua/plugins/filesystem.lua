@@ -23,6 +23,17 @@ return {
         view = {
           width = 50,
         },
+        filters = {
+          custom = {
+            ".*\\.wav",
+            ".*\\.png",
+            ".*\\.rpp",
+            ".*\\.uid",
+            ".*\\.import",
+            ".*\\.tscn",
+            ".*\\.tres",
+          }
+        },
       }
     end,
   },

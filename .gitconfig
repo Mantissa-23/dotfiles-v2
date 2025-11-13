@@ -1,6 +1,6 @@
 [user]
-	name = Dylan Culfogienis
-	email = dylan@studio-mantissa.com
+	name = Mantissa
+	email = mantissa@lightmill.io
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
