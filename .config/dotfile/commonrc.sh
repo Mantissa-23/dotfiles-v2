@@ -27,7 +27,7 @@ eval "$(starship init $(basename $SHELL))"
 alias vim='nvim'
 
 # Homebrew
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+if [ -f /home/linuxbrew/.linuxbrew/bin/brew ]; then eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"; fi
 
 # Godot Version Manager (gdvm)
 export PATH="/home/dylan/.gdvm/bin/current_godot:/home/dylan/.gdvm/bin:$PATH"
