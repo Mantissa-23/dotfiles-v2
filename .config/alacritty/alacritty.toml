@@ -1,0 +1,7 @@
+[general]
+import = [
+	"themes/gruvbox-dark-hard-contrast.toml"
+]
+
+[font]
+size = 9
