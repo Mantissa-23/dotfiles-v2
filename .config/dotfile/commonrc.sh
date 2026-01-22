@@ -31,3 +31,7 @@ if [ -f /home/linuxbrew/.linuxbrew/bin/brew ]; then eval "$(/home/linuxbrew/.lin
 
 # Godot Version Manager (gdvm)
 export PATH="/home/dylan/.gdvm/bin/current_godot:/home/dylan/.gdvm/bin:$PATH"
+
+# Set default editor to vim
+export EDITOR=/usr/bin/nvim
+export SYSTEMD_EDITOR=/usr/bin/nvim
