@@ -30,8 +30,14 @@ alias vim='nvim'
 if [ -f /home/linuxbrew/.linuxbrew/bin/brew ]; then eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"; fi
 
 # Godot Version Manager (gdvm)
-export PATH="/home/dylan/.gdvm/bin/current_godot:/home/dylan/.gdvm/bin:$PATH"
+export PATH="$HOME/.gdvm/bin/current_godot:$HOME/.gdvm/bin:$PATH"
 
 # Set default editor to vim
 export EDITOR=/usr/bin/nvim
 export SYSTEMD_EDITOR=/usr/bin/nvim
+
+# Custom binaries
+export PATH="$HOME/opt/bin:$HOME/.bin:$PATH"
+
+# Flatpak .desktop directories
+export XDG_DATA_DIRS="/var/lib/flatpak/exports/share:/home/yourusername/.local/share/flatpak/exports/share:$XDG_DATA_DIRS"

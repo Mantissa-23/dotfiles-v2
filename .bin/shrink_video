@@ -1,0 +1,9 @@
+#!/bin/bash
+# Calculate bitrate from size (in mib)
+length=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$2")
+bitrate=$(($1 * 8388.608 / length))
+# Perform conversion
+ffmpeg -y -i "$2" -c:v libx264 -b:v 2600k -pass 1 -an -f null /dev/null
+ffmpeg -i "$2" -c:v libx264 -b:v 2600k -pass 2 -c:a aac -b:a 128k "$3"
+# Cleanup
+rm ffmpeg2pass-0.log ffmpeg2pass-0.log.mbtree
