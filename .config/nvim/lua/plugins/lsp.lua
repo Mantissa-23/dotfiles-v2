@@ -13,7 +13,7 @@ return {
     dependencies = { "williamboman/mason.nvim" },
     config = function()
       require("mason-lspconfig").setup {
-        ensure_installed = { "py_lsp", "lua_ls", "csharp_ls", "vtsls", "svelte", "cssls", "rust-analyzer", "clangd" },
+        ensure_installed = { "pylsp", "lua_ls", "csharp_ls", "vtsls", "svelte", "cssls", "rust-analyzer", "clangd" },
       }
     end,
   },
