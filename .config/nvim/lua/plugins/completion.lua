@@ -125,6 +125,10 @@ return {
         capabilities = capabilities,
         autostart = true,
       }
+      require('lspconfig')['pylsp'].setup {
+        capabilities = capabilities,
+        autostart = true,
+      }
     end,
   },
   {
